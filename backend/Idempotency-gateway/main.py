@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Header, HTTPException, Request, Response
+from fastapi import FastAPI, Header, HTTPException, Response
 import asyncio
 import time
 from Storage import get_transaction, save_transaction
@@ -10,16 +10,13 @@ request_lock = asyncio.Lock()
 
 @app.post("/process-payment")
 async def process_payment(
-    request: Request,
+    body: dict,  
     response: Response,
     idempotency_key: str = Header(None)
 ):
     # Validate header presence
     if not idempotency_key:
         raise HTTPException(status_code=400, detail="Idempotency-Key header is required")
-
-    # Parse JSON body
-    body = await request.json()
 
     # Use lock to handle overlapping identical requests
     async with request_lock:
@@ -37,7 +34,7 @@ async def process_payment(
             response.headers["X-Cache-Hit"] = "true"
             return existing["response"]
 
-        # --- Simulate Bank Processing (User Story 1) ---
+        # --- Simulate Bank Processing  ---
         await asyncio.sleep(2) 
 
         # Generate successful response
