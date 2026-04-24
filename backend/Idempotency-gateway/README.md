@@ -58,8 +58,8 @@ Bash
 
 git clone https://github.com/ivo-n-g/AmaliTech-DEG-Project-based-challenges
 cd  AmaliTech-DEG-Project-based-challenges/backend/Idempotency-gateway
-Set up a Virtual Environment: # On Linux use: python -m venv venv
-source venv/bin/activate  
+Set up a Virtual Environment:  python -m venv venv
+# On Linux use: source venv/bin/activate  
 # On Windows use: venv\Scripts\activate
 ```
 Install Dependencies:
