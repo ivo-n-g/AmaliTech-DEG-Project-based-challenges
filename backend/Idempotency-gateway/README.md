@@ -63,8 +63,9 @@ source venv/bin/activate
 # On Windows use: venv\Scripts\activate
 ```
 Install Dependencies:
+```
 pip install -r requirements.txt
-
+```
 ### Running the API
 ```
 Start the server using Uvicorn:
