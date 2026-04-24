@@ -14,4 +14,4 @@ __pycache__/
 .env
 
 # Editor directories and files
-.vscode
+.vscode/
