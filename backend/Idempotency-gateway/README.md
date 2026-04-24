@@ -42,6 +42,7 @@ In-Memory Storage: To prioritize performance and minimize database overhead for 
 Thread Safety: To meet the Bonus User Story requirements, I implemented an asynchronous lock. This prevents "Race Conditions" where two identical requests hitting the server at the exact same millisecond might bypass the cache check.
 
 **Developer's Choice: TTL Memory Management**
+
 In a production environment, storing idempotency keys indefinitely would eventually exhaust server memory.
 
 The Feature: I implemented an automatic expiration (TTL) mechanism. Every saved transaction is timestamped, and the storage layer automatically prunes/deletes keys older than 24 hours. This ensures the system remains scalable, memory-efficient, and respects data privacy by not holding transaction hashes longer than necessary.
@@ -64,12 +65,13 @@ source venv/bin/activate
 Install Dependencies:
 pip install -r requirements.txt
 
-Running the API
+### Running the API
+```
 Start the server using Uvicorn:
 uvicorn main:app --reload
-The API will be available at: http://127.0.0.1:8000
-
-API Documentation
+The API will be available at: http://127.0.0.1:8000/docs
+```
+### API Documentation
 Endpoint: POST /process-payment
 
 Required Header: Idempotency-Key: <unique_string>
